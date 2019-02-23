@@ -13,7 +13,11 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/common/PrivateRoute';
+import CreateProfile from './components/create-profile/CreateProfile';
 import './App.css';
+
+
+
 
 //check for token
 if(localStorage.jwtToken){
@@ -50,15 +54,19 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path = "/" component={ Landing } />
-            <div className="container">
+            <div className="container body">
               <Route exact path = "/register" component={ Register } />
               <Route exact path = "/login" component={ Login } />
               <Switch>
                 <PrivateRoute exact path = "/dashboard" component={ Dashboard } />
               </Switch>
+              <Switch>
+                <PrivateRoute exact path = "/create-profile" component={ CreateProfile } />
+              </Switch>
+            </div>
+            <div>
             </div>
 
-            <Footer />
           </div>
         </Router>
       </Provider>
