@@ -41,14 +41,16 @@ const errors = {};
 //@access public
 
 
-router.get('/handle/:handle', (req,res) => {
+
+router.get('/handle/:handle', (req, res) => {
   const errors = {};
-  Profile.findOne({handle: req.params.handle})
+
+  Profile.findOne({ handle: req.params.handle })
     .populate('user', ['name', 'avatar'])
     .then(profile => {
-      if(!profile){
+      if (!profile) {
         errors.noprofile = 'There is no profile for this user';
-        res.status(404).json(err);
+        res.status(404).json(errors);
       }
 
       res.json(profile);
